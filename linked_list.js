@@ -41,6 +41,7 @@ class LinkedList {
     return this.head
   }
 
+
   removeTail() {
     // if NO tail and head
     if(!this.tail) return null
@@ -58,6 +59,7 @@ class LinkedList {
     }
   }
 
+
   removeHead() {
     if(!this.head) return null
     else {
@@ -71,6 +73,7 @@ class LinkedList {
       return oldHead.value
     }
   }
+
 
   search(val) {
     // start searching from the Head
@@ -86,6 +89,42 @@ class LinkedList {
     return null
   }
 
+
+  addAfterN(val, n = 0) {
+    if(n < 0) {
+      console.log("Please index can't be negative num!")
+      return null
+    }
+    if(!this.head || n === 0) return this.prepend(val)
+    if(this.head === this.tail) this.append(val)
+
+    let counter = 1
+    let currNode = this.head
+
+    while(counter < n && currNode.next) {
+      currNode = currNode.next
+      counter++
+    }
+
+    console.log('counter --> ', counter)
+
+    if(n > counter) {
+      console.log(`List has ${n} nodes. Enter less placement num!`)
+      return null
+    }
+    if(n === counter) this.append(val)
+
+    let nextNode = currNode.next
+    let newNode = new Node(val)
+
+    nextNode.prev = newNode
+    newNode.next = nextNode
+    newNode.prev = currNode
+    currNode.next = newNode
+
+    return newNode
+  }
+
 }
 
 
@@ -93,12 +132,13 @@ class LinkedList {
 const ll = new LinkedList()
 ll.append(33)
 ll.append(55)
-ll.prepend(11)
+// ll.prepend(11)
+ll.addAfterN('44', 1)
 
 console.log('                                                         ')
 console.log('---------------------------------------------------------')
 // console.log('removed head: ', ll.removeHead())
 // console.log('removed tail: ', ll.removeTail())
-console.log('search ==> ', ll.search(9999))
-console.log('                                                         ')
-console.log('LL: ', ll)
+// console.log('search ==> ', ll.search(9999))
+// console.log('LL BEFORE: ', ll)
+console.log('LL AFTER: ', ll)
