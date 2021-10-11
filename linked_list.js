@@ -27,6 +27,7 @@ class LinkedList {
       // connect new tail's prev to oldTale
       this.tail.prev = oldTale
     }
+    return this.tail
   }
 
   prepend(val) {
@@ -37,6 +38,7 @@ class LinkedList {
       oldHead.prev = this.head
       this.head.next = oldHead
     }
+    return this.head
   }
 
   removeTail() {
@@ -66,7 +68,6 @@ class LinkedList {
         this.head = oldHead.next
         this.head.prev = null
       }
-
       return oldHead.value
     }
   }
@@ -81,10 +82,10 @@ class LinkedList {
       // else continue to next node
       else currNode = currNode.next
     }
-
     // if while loop got here - no value found in LL
     return null
   }
+
 }
 
 
