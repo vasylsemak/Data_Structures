@@ -1,6 +1,6 @@
 class Node {
   constructor(value, prev, next) {
-    this.val = value
+    this.value = value
     this.prev = prev || null
     this.next = next || null
   }
@@ -41,7 +41,22 @@ class LinkedList {
 
   removeHead() {}
 
-  removeTail() {}
+  removeTail() {
+    // if NO tail and head
+    if(!this.tail) return null
+    else {
+      let oldTale = this.tail
+      // if only ONE node
+      if(this.tail === this.head) this.tail = this.head = null
+      // 2 or more nodes
+      else {
+        this.tail = oldTale.prev
+        this.tail.next = null
+      }
+      // return node value or null If One node
+      return oldTale.value
+    }
+  }
 
   search() {}
 }
@@ -52,4 +67,6 @@ ll.append(33)
 ll.append(55)
 ll.prepend(11)
 
-console.log('LL: ', ll.head.next)
+console.log('------------------------------------------------------')
+console.log('removed tail: ', ll.removeTail())
+console.log('LL: ', ll)
