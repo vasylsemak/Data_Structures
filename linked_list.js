@@ -39,8 +39,6 @@ class LinkedList {
     }
   }
 
-  removeHead() {}
-
   removeTail() {
     // if NO tail and head
     if(!this.tail) return null
@@ -58,8 +56,37 @@ class LinkedList {
     }
   }
 
-  search() {}
+  removeHead() {
+    if(!this.head) return null
+    else {
+      let oldHead = this.head
+
+      if(this.head === this.tail) this.head = this.tail = null
+      else {
+        this.head = oldHead.next
+        this.head.prev = null
+      }
+
+      return oldHead.value
+    }
+  }
+
+  search(val) {
+    // start searching from the Head
+    let currNode = this.head
+
+    while(currNode) {
+      // if node val = search val - return node
+      if(currNode.value === val) return currNode
+      // else continue to next node
+      else currNode = currNode.next
+    }
+
+    // if while loop got here - no value found in LL
+    return null
+  }
 }
+
 
 // TEST
 const ll = new LinkedList()
@@ -67,6 +94,10 @@ ll.append(33)
 ll.append(55)
 ll.prepend(11)
 
-console.log('------------------------------------------------------')
-console.log('removed tail: ', ll.removeTail())
+console.log('                                                         ')
+console.log('---------------------------------------------------------')
+// console.log('removed head: ', ll.removeHead())
+// console.log('removed tail: ', ll.removeTail())
+console.log('search ==> ', ll.search(9999))
+console.log('                                                         ')
 console.log('LL: ', ll)
