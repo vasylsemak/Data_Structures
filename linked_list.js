@@ -29,7 +29,14 @@ class LinkedList {
     }
   }
 
-  prepend() {
+  prepend(val) {
+    if(!this.head) this.head = this.tail = new Node(val)
+    else {
+      let oldHead = this.head
+      this.head = new Node(val)
+      oldHead.prev = this.head
+      this.head.next = oldHead
+    }
   }
 
   removeHead() {}
@@ -41,8 +48,8 @@ class LinkedList {
 
 // TEST
 const ll = new LinkedList()
-ll.append(5)
+ll.append(33)
+ll.append(55)
+ll.prepend(11)
 
-console.log(
-  'LL: ', ll
-)
+console.log('LL: ', ll.head.next)
