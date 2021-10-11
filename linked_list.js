@@ -91,13 +91,15 @@ class LinkedList {
 
 
   addAfterN(val, n = 0) {
+    // negative num edge case
     if(n < 0) {
       console.log("Please index can't be negative num!")
       return null
     }
+    // if LL is empty or order num is 0 - prepend
     if(!this.head || n === 0) return this.prepend(val)
-    if(this.head === this.tail) this.append(val)
 
+    // start from the head and count top N-th node
     let counter = 1
     let currNode = this.head
 
@@ -106,14 +108,15 @@ class LinkedList {
       counter++
     }
 
-    console.log('counter --> ', counter)
-
+    // if order num is greater than LL length - return and send alert
     if(n > counter) {
       console.log(`List has ${n} nodes. Enter less placement num!`)
       return null
     }
+    // if order num is at the and of LL, append
     if(n === counter) this.append(val)
 
+    // currNode here is node after which to insert, nextNode - after inserted
     let nextNode = currNode.next
     let newNode = new Node(val)
 
@@ -133,7 +136,7 @@ const ll = new LinkedList()
 ll.append(33)
 ll.append(55)
 // ll.prepend(11)
-ll.addAfterN('44', 1)
+ll.addAfterN('44', 0)
 
 console.log('                                                         ')
 console.log('---------------------------------------------------------')
