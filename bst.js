@@ -106,39 +106,55 @@ class BST {
     return stack
   }
 
-    /*
-      - if left node - recursively traverse left
-      - push node value to stack
-      - if right node - recursively traverse right
-    */
-    inOrderDFS() {
-      const stack = []
+  /*
+    - if left node - recursively traverse left
+    - push node value to stack
+    - if right node - recursively traverse right
+  */
+  inOrderDFS() {
+    const stack = []
 
-      const traverse = node => {
-        if(node.left) traverse(node.left)
-        stack.push(node.value)
-        if(node.right) traverse(node.right)
-      }
-
-      traverse(this.root)
-
-      return stack
+    const traverse = node => {
+      if(node.left) traverse(node.left)
+      stack.push(node.value)
+      if(node.right) traverse(node.right)
     }
 
-    // post order value, left, right
-    postOrderDFS() {
-      const stack = []
+    traverse(this.root)
 
-      const traverse = node => {
-        if(node.left) traverse(node.left)
-        if(node.right) traverse(node.right)
-        stack.push(node.value)
-      }
+    return stack
+  }
 
-      traverse(this.root)
+  // post order value, left, right
+  postOrderDFS() {
+    const stack = []
 
-      return stack
+    const traverse = node => {
+      if(node.left) traverse(node.left)
+      if(node.right) traverse(node.right)
+      stack.push(node.value)
     }
+
+    traverse(this.root)
+
+    return stack
+  }
+
+  breadthFirstSearch() {
+    const stack = []
+    const queue = []
+    queue.push(this.root)
+
+    while(queue.length) {
+      let currNode = queue.shift()
+      stack.push(currNode.value)
+
+      if(currNode.left) queue.push(currNode.left)
+      if(currNode.right) queue.push(currNode.right)
+    }
+
+    return stack
+  }
 
 }
 
@@ -159,4 +175,5 @@ console.log('contains 99: ', myBST.contains(99))
 console.log('preorder DFS: ', myBST.preOrderDFS())
 console.log('inorder DFS: ', myBST.inOrderDFS())
 console.log('postorder DFS: ', myBST.postOrderDFS())
+console.log('breadthFirstSearch: ', myBST.breadthFirstSearch())
 console.log('                        ')
