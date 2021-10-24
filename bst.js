@@ -50,15 +50,39 @@ class BST {
     createNode(this.root)
   }
 
+  // find minimum value in BST
+  min() {
+    let currMin = this.root
+
+    while(currMin.left) {
+      currMin = currMin.left
+    }
+
+    return currMin.value
+  }
+
+  max() {
+    let currMax = this.root
+
+    while(currMax.right) {
+      currMax = currMax.right
+    }
+
+    return currMax.value
+  }
+
 }
 
 
-let myBST = new BST(8)
-myBST.insert(4)
+let myBST = new BST(6)
 myBST.insert(3)
-myBST.insert(6)
-myBST.insert(5)
+myBST.insert(9)
+myBST.insert(1)
+myBST.insert(7)
 
 
-console.log('                                                       ')
-console.log('myBst: ', myBST.root)
+console.log('                        ')
+console.log('myBst: ', myBST)
+console.log('min value: ', myBST.min())
+console.log('max value: ', myBST.max())
+console.log('                        ')
