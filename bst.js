@@ -16,19 +16,26 @@ class BST {
     return this.count
   }
 
-  // create new Node with val
-  // increment count
   /*
-    if val is less than rootVal:
-      if no left - append left as new Node
-      else - recursively go in leftNode
+    recursive f-n:
+      1. check edge case if new val = current val
+      2. compares value to root
+      3. if val < root:
+        - if no root.left: appoint newNode as left node
+        - else: run itself recursively on left node (step 1)
+      4. if val > root:
+        - if no root.right: appoint newNode as right node
+        - else: run itself recursively on right node (step 1)
   */
-  // do same for right
   insert(val) {
     let newNode = new Node(val)
     this.count++
 
     const createNode = root => {
+      if(val === root.value) {
+        console.log('This value exist in BST! Insert different value.')
+        return
+      }
       if(newNode.value < root.value) {
         if(!root.left) root.left = newNode
         else createNode(root.left)
