@@ -164,24 +164,42 @@ class BST {
     return stack
   }
 
+  /*
+    recursive f-n will check node
+    base case - no node - return 0
+    else call itself recursively on left and right nodes
+    find if left or right node makes more f-n calls
+    add 1 to every recursive call on left or right node
+  */
+  findDepth() {
+    const recursiveFN = node => {
+      if(!node) return 0
+      else return 1 + Math.max(recursiveFN(node.left), recursiveFN(node.right))
+    }
+
+    return recursiveFN(this.root)
+  }
+
 }
 
 
 let myBST = new BST(6)
 myBST.insert(3)
-myBST.insert(9)
+myBST.insert(10)
 myBST.insert(1)
-myBST.insert(7)
+myBST.insert(4)
+myBST.insert(12)
 
 
 console.log('                        ')
 console.log('myBst: ', myBST)
-console.log('min value: ', myBST.min())
-console.log('max value: ', myBST.max())
-console.log('contains 7: ', myBST.contains(7))
-console.log('contains 99: ', myBST.contains(99))
-console.log('preorder DFS: ', myBST.preOrderDFS())
-console.log('inorder DFS: ', myBST.inOrderDFS())
-console.log('postorder DFS: ', myBST.postOrderDFS())
-console.log('breadthFirstSearch: ', myBST.breadthFirstSearch())
+// console.log('min value: ', myBST.min())
+// console.log('max value: ', myBST.max())
+// console.log('contains 7: ', myBST.contains(7))
+// console.log('contains 99: ', myBST.contains(99))
+// console.log('preorder DFS: ', myBST.preOrderDFS())
+// console.log('inorder DFS: ', myBST.inOrderDFS())
+// console.log('postorder DFS: ', myBST.postOrderDFS())
+// console.log('breadthFirstSearch: ', myBST.breadthFirstSearch())
+console.log('findDepth: ', myBST.findDepth())
 console.log('                        ')
