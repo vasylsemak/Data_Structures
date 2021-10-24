@@ -140,6 +140,14 @@ class BST {
     return stack
   }
 
+  /*
+    traverse level by level
+    start from root, push it to queue
+    until queue is empty:
+      - push first elem to stack
+      - push left and right nodes of first elem to end of queue
+    return stack (final array)
+  */
   breadthFirstSearch() {
     const stack = []
     const queue = []
