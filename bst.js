@@ -84,6 +84,37 @@ class BST {
     return false
   }
 
+  /* DeptFirstSearch */
+  // pre order: value, left, right
+  preOrderDFS() {
+    const stack = []
+
+    const traverse = node => {
+      stack.push(node.value)
+
+      if(node.left) traverse(node.left)
+      if(node.right) traverse(node.right)
+    }
+
+    traverse(this.root)
+
+    return stack
+  }
+
+    // in order: left, value, right
+    inOrderDFS() {
+      const stack = []
+
+      return stack
+    }
+
+    // post order value, left, right
+    postOrderDFS() {
+      const stack = []
+
+      return stack
+    }
+
 }
 
 
@@ -100,4 +131,5 @@ console.log('min value: ', myBST.min())
 console.log('max value: ', myBST.max())
 console.log('contains 7: ', myBST.contains(7))
 console.log('contains 99: ', myBST.contains(99))
+console.log('preorder DFS: ', myBST.preOrderDFS())
 console.log('                        ')
