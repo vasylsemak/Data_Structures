@@ -31,18 +31,18 @@ class BST {
     let newNode = new Node(val)
     this.count++
 
-    const createNode = root => {
-      if(val === root.value) {
+    const createNode = node => {
+      if(val === node.value) {
         console.log('This value exist in BST! Insert different value.')
         return
       }
-      if(newNode.value < root.value) {
-        if(!root.left) root.left = newNode
-        else createNode(root.left)
+      if(newNode.value < node.value) {
+        if(!node.left) node.left = newNode
+        else createNode(node.left)
       }
-      if(newNode.value > root.value) {
-        if(!root.right) root.right = newNode
-        else createNode(root.right)
+      if(newNode.value > node.value) {
+        if(!node.right) node.right = newNode
+        else createNode(node.right)
       }
       return newNode
     }
