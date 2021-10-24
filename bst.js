@@ -89,6 +89,11 @@ class BST {
   preOrderDFS() {
     const stack = []
 
+    /*
+      - push node value to stack
+      - if left node - recursively traverse left
+      - if right node - recursively traverse right
+    */
     const traverse = node => {
       stack.push(node.value)
 
@@ -101,9 +106,21 @@ class BST {
     return stack
   }
 
-    // in order: left, value, right
+    /*
+      - if left node - recursively traverse left
+      - push node value to stack
+      - if right node - recursively traverse right
+    */
     inOrderDFS() {
       const stack = []
+
+      const traverse = node => {
+        if(node.left) traverse(node.left)
+        stack.push(node.value)
+        if(node.right) traverse(node.right)
+      }
+
+      traverse(this.root)
 
       return stack
     }
@@ -111,6 +128,14 @@ class BST {
     // post order value, left, right
     postOrderDFS() {
       const stack = []
+
+      const traverse = node => {
+        if(node.left) traverse(node.left)
+        if(node.right) traverse(node.right)
+        stack.push(node.value)
+      }
+
+      traverse(this.root)
 
       return stack
     }
@@ -132,4 +157,6 @@ console.log('max value: ', myBST.max())
 console.log('contains 7: ', myBST.contains(7))
 console.log('contains 99: ', myBST.contains(99))
 console.log('preorder DFS: ', myBST.preOrderDFS())
+console.log('inorder DFS: ', myBST.inOrderDFS())
+console.log('postorder DFS: ', myBST.postOrderDFS())
 console.log('                        ')
