@@ -71,6 +71,19 @@ class BST {
     return currMax.value
   }
 
+  // check if BST contains val
+  contains(val) {
+    let currNode = this.root
+
+    while(currNode) {
+      if(currNode.value === val) return true
+      if(val < currNode.value) currNode = currNode.left
+      else currNode = currNode.right
+    }
+
+    return false
+  }
+
 }
 
 
@@ -85,4 +98,6 @@ console.log('                        ')
 console.log('myBst: ', myBST)
 console.log('min value: ', myBST.min())
 console.log('max value: ', myBST.max())
+console.log('contains 7: ', myBST.contains(7))
+console.log('contains 99: ', myBST.contains(99))
 console.log('                        ')
