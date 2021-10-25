@@ -4,10 +4,42 @@ function hash(key, tableSize) {
 
   for(let i = 0; i < len; i++) {
     hashCode += key.charCodeAt(i)
-    console.log('nextHash: ', hashCode)
   }
 
   return hashCode % tableSize
 }
 
-console.log(hash('Hello Worl', 7))
+
+class HashTable {
+  constructor(size) {
+    this.size = size
+    this.buckets = Array(this.size)
+
+    for(let i = 0; i < this.size; i++) {
+      this.buckets[i] = new Map
+    }
+  }
+
+  insert(key, val) {
+    let idx = hash(key, this.size)
+    this.buckets[idx].set(key, val)
+  }
+
+  remove(key) {
+    let idx = hash(key, this.size)
+    let deleted = this.buckets[idx].delete(key)
+
+    // console.log('removed: ', deleted)
+    return deleted
+  }
+
+}
+
+let hTable = new HashTable(12)
+
+hTable.insert('Donald', 'Trump')
+hTable.insert('Joe', 'Biden')
+hTable.insert('Hillary', 'Clinton')
+hTable.remove('Donald')
+
+console.log('HashTable', hTable)
