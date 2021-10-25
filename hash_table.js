@@ -25,6 +25,12 @@ class HashTable {
     this.buckets[idx].set(key, val)
   }
 
+  search(key) {
+    let idx = hash(key, this.size)
+
+    return this.buckets[idx].get(key)
+  }
+
   remove(key) {
     let idx = hash(key, this.size)
     let deleted = this.buckets[idx].delete(key)
@@ -40,6 +46,10 @@ let hTable = new HashTable(12)
 hTable.insert('Donald', 'Trump')
 hTable.insert('Joe', 'Biden')
 hTable.insert('Hillary', 'Clinton')
+hTable.insert('Barack', 'Obama')
 hTable.remove('Donald')
 
-console.log('HashTable', hTable)
+console.log('                               ')
+console.log('search=> ', hTable.search('Joe'))
+console.log('HashTable: ', hTable)
+console.log('                               ')
